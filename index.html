@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aplicación Web</title>
+  <script type="module" src="./componentes/header.js"></script>
+  <script type="module" src="./componentes/footer.js"></script>
+  <script type="module" src="./componentes/main.js"></script>
+  <script type="module" src="./componentes/menu.js"></script>
+  <script type="module" src="./componentes/social-profile.js"></script>
+  <script type="module" src="./componentes/custom-table.js"></script>
+  <script type="module" src="./componentes/gallery.js"></script>
+
+  <!-- Enlazar el archivo CSS -->
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <app-header></app-header>
+  <app-menu></app-menu>
+  <app-main>
+    <h2>
+      Un espacio diseñado para gestionar la comunicación entre la comunidad universitaria.
+    </h2>
+    <br></br>
+    <h4>
+      Para iniciar, utilice nuestro menú interactivo.
+    </h4>
+  </app-main>
+  <app-footer></app-footer>
+
+  <script>
+    window.addEventListener('navigate', (e) => {
+      const main = document.querySelector('app-main');
+      
+      // Si se hace clic en "Inicio" (id = home)
+      if (e.detail.page === 'home') {
+        main.innerHTML = `
+          <h2>RED SOCIAL ESPE</h2>
+          <h4>Universidad de las Fuerzas Armadas</h4>
+          <div id="info-box">
+              <p>
+                  Tener una red social en la universidad es fundamental porque fomenta la interacción y el intercambio de ideas entre estudiantes, 
+                  profesores y profesionales, creando un espacio donde se construyen relaciones personales y profesionales. Entre sus beneficios destaca el 
+                  acceso a oportunidades como eventos, proyectos colaborativos, prácticas profesionales y ofertas laborales, que son clave para el desarrollo 
+                  académico y profesional. Además, permite compartir conocimientos, experiencias y recursos de manera eficiente, fortaleciendo el aprendizaje. 
+                  Las ventajas incluyen ampliar el alcance de contactos en áreas de interés, mejorar habilidades de comunicación y trabajar en red, lo cual es 
+                  esencial en un mundo cada vez más conectado y competitivo.
+              </p>
+              <img id="info-image" src="https://scontent.fuio5-1.fna.fbcdn.net/v/t39.30808-6/312731724_10151956043479990_2601802471717440500_n.jpg?_nc_cat=106&ccb=1-7&_nc_sid=127cfc&_nc_ohc=rJ58gRZeWrIQ7kNvgE3Penh&_nc_zt=23&_nc_ht=scontent.fuio5-1.fna&_nc_gid=AlTy_N9t3SDDvUP_d1Itxhw&oh=00_AYDaE4F0mLtZZwDBPzkdE-sbwnaRQXbkJJ8XwuX3ONL5Jg&oe=6764FA45" alt="Imagen de ejemplo">
+          </div>
+        `;
+      } else if (e.detail.page === 'profile') {
+        main.innerHTML = `<social-profile></social-profile>`;
+      } else if (e.detail.page === 'gallery') {
+        // Cargar el componente de galería
+        main.innerHTML = `<gallery-slots></gallery-slots>`;
+      } else if (e.detail.page === 'table') {
+        main.innerHTML = `<custom-table></custom-table>`;
+      }
+    });
+  </script>
+</body>
+</html>
